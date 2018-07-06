@@ -1,8 +1,6 @@
 from sklearn.cluster import KMeans
 from scipy.spatial.distance import cdist, pdist
 import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
 
 
 def kmeans_explained_variance(k_min, k_max, data):
@@ -19,10 +17,10 @@ def kmeans_explained_variance(k_min, k_max, data):
 	dist = [np.min(ke, axis=1) for ke in k_euclid]
 	
 	# Within-cluster sum of squares
-	wcss = [np.sum(d**2) for d in dist]
+	wcss = [np.sum(d**2, axis=0) for d in dist]
 	
 	# Total sum of squares
-	tss = np.sum(pdist(data)**2) / data.shape[0]
+	tss = np.sum(pdist(data)**2, axis=0) / data.shape[0]
 	
 	# Between-cluster sum of squares
 	bcss = tss - wcss
