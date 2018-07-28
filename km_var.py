@@ -13,7 +13,7 @@ def kmeans_explained_variance(k_min, k_max, data):
 	centroids = [km.cluster_centers_ for km in k_means_var]
 	
 	# Assign observations in data to closest centroid
-	k_euclid = [cdist(df, cent, 'euclidean') for cent in centroids]
+	k_euclid = [cdist(data, cent, 'euclidean') for cent in centroids]
 	dist = [np.min(ke, axis=1) for ke in k_euclid]
 	
 	# Within-cluster sum of squares
